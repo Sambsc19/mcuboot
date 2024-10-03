@@ -1,0 +1,26 @@
+&flash0 {
+	// compatible = "st,stm32h7-flash";
+	// reg = <0x08000000 0x10000>; /* 64KB Flash */
+	// label = "FLASH";
+
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 DT_SIZE_K(48)>; /* 32KB for MCUboot */
+		};
+
+		slot0_partition: partition@C000 {
+			label = "image-0";
+			reg = <0x0000C000 DT_SIZE_K(8)>; /* 16B for Application */
+		};
+
+		slot1_partition: partition@E000 {
+			label = "image-1";
+			reg = <0x000E000 DT_SIZE_K(8)>; /* 16KB for Secondary Application Slot */
+		};
+	};
+};

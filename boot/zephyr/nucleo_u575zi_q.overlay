@@ -1,0 +1,47 @@
+// / {
+//     chosen {
+//         zephyr,code-partition = &slot0_partition;
+//     };
+//     };
+    
+&flash0 {
+    // compatible = "st,stm32h7-flash";
+    // reg = <0x08000000 0x10000>; /* 64KB Flash */
+    // label = "FLASH";
+
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        boot_partition: partition@0 {
+            label = "mcuboot";
+            reg = <0x00000000 0x00010000>;
+            read-only;
+        };
+    
+        /* storage: 64KB for settings */
+        storage_partition: partition@10000 {
+            label = "storage";
+            reg = <0x00010000 0x00010000>;
+        };
+    
+        /* application image slot: 768KB */
+        slot0_partition: partition@40000 {
+            label = "image-0";
+            reg = <0x00040000 0x000C0000>;
+        };
+    
+        /* backup slot: 768KB */
+        slot1_partition: partition@100000 {
+            label = "image-1";
+            reg = <0x00100000 0x000C0000>;
+        };
+    
+        /* swap slot: 256KB */
+        scratch_partition: partition@1c0000 {
+            label = "image-scratch";
+            reg = <0x001c0000 0x00040000>;
+        };
+    };
+};

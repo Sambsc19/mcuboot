@@ -1,3 +1,9 @@
 {
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "files.associations": {
+        "flash_map_backend.h": "c",
+        "mcuboot_status.h": "c",
+        "bootutil.h": "c",
+        "bootutil_log.h": "c"
+    }
 }
